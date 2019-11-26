@@ -13,6 +13,8 @@ namespace AtomStore.Application.Interfaces
 
         PagedResult<ProductViewModel> GetAllPaging(int? categoryId, string keyword, int page, int pageSize);
 
+        PagedResult<ProductViewModel> GetAllPagingAdmin(int? categoryId, string keyword, int page, int pageSize);
+
         ProductViewModel Add(ProductViewModel product);
 
         void Update(ProductViewModel product);

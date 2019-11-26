@@ -56,6 +56,14 @@ namespace AtomStore.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public IActionResult GetAllPagingAdmin(int? categoryId, string keyWord, int page, int pageSize)
+        {
+            var model = _productService.GetAllPagingAdmin(categoryId, keyWord, page, pageSize);
+            return new OkObjectResult(model);
+        }
+        
+
+        [HttpGet]
         public IActionResult GetById(int id)
         {
             var model = _productService.GetById(id);

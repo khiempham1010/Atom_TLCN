@@ -79,7 +79,7 @@
     dateTimeFormatJson: function (datetime) {
         if (datetime == null || datetime == '')
             return '';
-        var newdate = new Date(parseInt(datetime.substr(6)));
+        var newdate = new Date(datetime);
         var month = newdate.getMonth() + 1;
         var day = newdate.getDate();
         var year = newdate.getFullYear();
@@ -96,7 +96,11 @@
             mm = "0" + mm;
         if (ss < 10)
             ss = "0" + ss;
+        
+
         return day + "/" + month + "/" + year + " " + hh + ":" + mm + ":" + ss;
+        //var date = datetime.substr(14)
+        //return date;
     },
     startLoading: function () {
         if ($('.dv-loading').length > 0)
@@ -108,9 +112,9 @@
     },
     getStatus: function (status) {
         if (status == 0)
-            return '<span class="gadge bg-green">Publish</span>';
-        else
             return '<span class="gadge bg-red">Lock</span>';
+        else
+            return '<span class="gadge bg-green">Publish</span>';
     },
     formatNumber: function (number, precision) {
         if (!isFinite(number)) {
@@ -124,21 +128,28 @@
         var map = {};
         var roots = [];
         for (var i = 0; i < arr.length; i += 1) {
-            if (arr[i].parentId != null) {
-
-            }
-            else {
+            arr[i].children = [];
+            if (arr[i].parentId == null) {
                 map[arr[i].id] = i;
                 roots.push(arr[i]);
             }
-        }
-        for (var i = 0; i < arr.length; i += 1) {
-            var node = arr[i];
-            node.children = [];
-            if (node.parentId != null) {
-                arr[map[node.parentId]].children.push(node);
+            else {
+                for (var j = 0; j < arr.length; j += 1) {
+                    var node = arr[i];
+                    map[arr[i].id] = i;
+                    if (node.parentId==arr[j].id) {
+                        arr[map[node.parentId]].children.push(node);
+                    }
+                }
             }
         }
+        //for (var i = 0; i < arr.length; i += 1) {
+        //    var node = arr[i];
+        //    node.children = [];
+        //    if (node.parentId != null) {
+        //        arr[map[node.parentId]].children.push(node);
+        //    }
+        //}
         return roots;
     }
 }

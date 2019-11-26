@@ -31,7 +31,7 @@ namespace AtomStore.Areas.Admin.Components
             else
             {
                 //TODO: Get by permission
-                functions = new List<FunctionViewModel>();
+                functions = await _functionService.GetAll(string.Empty);
             }
             return View(functions);
         }

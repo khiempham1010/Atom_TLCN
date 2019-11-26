@@ -1,4 +1,7 @@
-﻿@section Styles{
+﻿@using Microsoft.AspNetCore.Authorization
+@using AtomStore.Authorization
+@inject IAuthorizationService  AuthorizationService
+@section Styles{
     <link href="~/lib/jQuery-EasyUI/themes/material/easyui.css" rel="stylesheet" />
     <link href="~/lib/jquery-easyui/themes/icon.css" rel="stylesheet" />
 }
@@ -32,11 +35,14 @@
                 </select>
             </div>
             <div class="col-md-2 col-sm-12  form-group pull-right">
-                <button id="btnCreate" class="btn btn-success">Create</button>
-                <a class="btn btn-danger" href="~/templates/ProductImportTemplate.xlsx">Download template</a>
-                <button class="btn btn-primary" id="btn-import" type="button">Import excel</button>
-                <button class="btn btn-primary" id="btn-export" type="button">Export excel</button>
-            </div>
+                @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Create)).Succeeded)
+                {
+                    <button id="btnCreate" class="btn btn-success">Create</button>
+                }
+                    <a class="btn btn-danger" href="~/templates/ProductImportTemplate.xlsx">Download template</a>
+                    <button class="btn btn-success" id="btn-import" type="button">Import excel</button>
+                    <button class="btn btn-primary" id="btn-export" type="button">Export excel</button>
+                </div>
         </div>
     </div>
     <table class="table">
@@ -85,11 +91,20 @@
         <td>{{CreatedDate}}</td>
         <td>{{{Status}}}</td>
         <th scope="row">
-            <button class="btn btn-warning btn-sm btn-edit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger btn-sm btn-delete" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
-            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-images"><i class="fa fa-image"></i></a>
-            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-quantity"><i class="fa fa-hourglass-start"></i></a>
-            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-whole-price"><i class="fa fa-money"></i></a>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Update)).Succeeded)
+            {
+                <a class="btn-edit" data-id="{{Id}}"><i class="fa fa-pencil-square-o"></i></a>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Update)).Succeeded)
+            {
+                <a href="#" data-id="{{Id}}" class="btn btn-xs btn-images"><i class="fa fa-image"></i></a>
+                <a href="#" data-id="{{Id}}" class="btn btn-xs btn-quantity"><i class="fa fa-hourglass-start"></i></a>
+            }
+            @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Delete)).Succeeded)
+            {
+                <a class="btn-delete" data-id="{{Id}}"><i class="fa fa-trash-o"></i></a>
+            }
         </th>
     </tr>
 </script>

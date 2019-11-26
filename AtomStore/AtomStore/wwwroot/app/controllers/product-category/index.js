@@ -105,7 +105,7 @@
                 var seoAlias = $('#txtSeoAliasM').val();
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
                 var showHome = $('#ckShowHomeM').prop('checked');
-                order = id;
+                
                 $.ajax({
                     type: "POST",
                     url: "/Admin/ProductCategory/SaveEntity",
@@ -151,7 +151,7 @@
         $('#hidIdM').val(0);
         $('#txtNameM').val('');
         initTreeDropDownCategory('');
-
+        $('#txtAliasM').val('');
         $('#txtDescM').val('');
         $('#txtOrderM').val('');
         $('#txtHomeOrderM').val('');

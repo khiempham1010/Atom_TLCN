@@ -232,7 +232,7 @@
                             Id: item.Id,
                             UserName: item.UserName,
                             Avatar: item.Avatar === undefined ? '<img src="/admin-side/images/user.png" width=25 />' : '<img src="' + item.Avatar + '" width=25 />',
-                            DateCreated: atom.dateTimeFormatJson(item.DateCreated),
+                            DateCreated: item.DateCreated,
                             Status: atom.getStatus(item.Status)
                         });
                     });
@@ -275,7 +275,7 @@
             next: 'Next',
             last: 'Last',
             onPageClick: function (event, p) {
-                tedu.configs.pageIndex = p;
+                atom.configs.pageIndex = p;
                 setTimeout(callBack(), 200);
             }
         });

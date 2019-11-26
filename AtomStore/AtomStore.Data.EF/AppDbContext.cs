@@ -84,6 +84,7 @@ namespace AtomStore.Data.EF
                     {
                         changedOrAddedItem.DateCreated = DateTime.Now;
                     }
+
                     changedOrAddedItem.DateModified = DateTime.Now;
                 }
             }

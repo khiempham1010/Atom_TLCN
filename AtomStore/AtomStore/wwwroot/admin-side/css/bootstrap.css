@@ -3732,8 +3732,8 @@ tbody.collapse.in {
 .input-group .form-control {
   position: relative;
   z-index: 2;
-  float: left;
-  width: 100%;
+  float: right;
+  width: 50%;
   margin-bottom: 0;
 }
 .input-group-lg > .form-control,
@@ -3859,6 +3859,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-btn > .btn + .btn {
   margin-left: -1px;
+  height:34px;
 }
 .input-group-btn > .btn:hover,
 .input-group-btn > .btn:focus,

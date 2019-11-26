@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Authorization
+@using AtomStore.Authorization
+@inject IAuthorizationService  AuthorizationService
 @{
     ViewData["Title"] = "Order management";
 }
@@ -34,10 +36,15 @@
 
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+
                 <button class="btn btn-default" id="btn-search" type="button">Search!</button>
+
             </div>
             <div class="col-md-2 col-sm-2 col-xs-12 form-group">
-                <button class="btn btn-success" id="btn-create" type="button">Create</button>
+                @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Create)).Succeeded)
+                {
+                    <button class="btn btn-success" id="btn-create" type="button">Create</button>
+                }
             </div>
         </div>
     </div>

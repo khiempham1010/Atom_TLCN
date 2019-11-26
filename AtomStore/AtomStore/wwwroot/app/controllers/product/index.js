@@ -94,7 +94,7 @@
                     $('#txtOriginalPriceM').val(data.OriginalPrice);
                     $('#txtPromotionPriceM').val(data.PromotionPrice);
 
-                    $('#txtImage').val(data.ThumbnailImage);
+                    $('#txtImage').val(data.Image);
 
                     $('#txtTagM').val(data.Tags);
                     $('#txtMetakeywordM').val(data.SeoKeywords);
@@ -362,7 +362,7 @@
                 page: atom.configs.pageIndex,
                 pageSize: atom.configs.pageSize
             },
-            url: '/admin/product/GetAllPaging',
+            url: '/admin/product/GetAllPagingAdmin',
             DataType: 'json',
             success: function (response) {
                 $.each(response.Results, function (i, item) {
@@ -373,7 +373,7 @@
                         CategoryName: item.ProductCategory.Name,
                         Price: atom.formatNumber(item.Price, 0),
                         CreatedDate: atom.dateTimeFormatJson(item.DateCreated),
-                        Status: atom.getStatus(item.status)
+                        Status: atom.getStatus(item.Status)
                     });
                     $('#lblTotalRecords').text(response.RowCount);
                     if (render != '') {

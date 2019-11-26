@@ -157,6 +157,31 @@ namespace AtomStore.Application.Implementation
             return paginationSet;
         }
 
+        public PagedResult<ProductViewModel> GetAllPagingAdmin(int? categoryId, string keyword, int page, int pageSize)
+        {
+            var query = _productRepository.FindAll();
+            if (!string.IsNullOrEmpty(keyword))
+                query = query.Where(x => x.Name.Contains(keyword));
+            if (categoryId.HasValue)
+                query = query.Where(x => x.CategoryId == categoryId.Value);
+
+            int totalRow = query.Count();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var data = query.ProjectTo<ProductViewModel>().ToList();
+
+            var paginationSet = new PagedResult<ProductViewModel>()
+            {
+                Results = data,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
+        }
+
         public ProductViewModel GetById(int id)
         {
             return Mapper.Map<Product, ProductViewModel>(_productRepository.FindById(id));

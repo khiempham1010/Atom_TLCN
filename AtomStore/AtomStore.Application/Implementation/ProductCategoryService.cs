@@ -101,7 +101,7 @@ namespace AtomStore.Application.Implementation
             int sourceSortOrder = source.SortOrder;
 
             //if move product category from root to root
-            if (source.ParentId != null&&target.ParentId==null)
+            if (source.ParentId != null && target.ParentId == null)
             {
                 source.ParentId = null;
 
@@ -138,7 +138,15 @@ namespace AtomStore.Application.Implementation
 
                 source.SortOrder = targeSortOrdert;
                 _productCategoryRepository.Update(source);
+                var sortProductCategorys1 = productCategorys.OrderBy(x => x.SortOrder).Where(x => x.ParentId == source.ParentId).ToList();
+                for (int i = 0; i < sortProductCategorys.Count(); i++)
+                {
+                    var productCategoryViewModel = _productCategoryRepository.FindById(sortProductCategorys1[i].Id);
+                    productCategoryViewModel.SortOrder = i;
+                    _productCategoryRepository.Update(productCategoryViewModel);
+                }
             }
+            
             
             //move Product category from an folder to root
             //else 
