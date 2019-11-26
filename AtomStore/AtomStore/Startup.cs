@@ -26,6 +26,10 @@ using AtomStore.Helpers;
 using AtomStore.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using AtomStore.Authorization;
+using AtomStore.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using IEmailSender = Microsoft.AspNetCore.Identity.UI.Services.IEmailSender;
 
 namespace AtomStore
 {
@@ -77,6 +81,40 @@ namespace AtomStore
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<DbInitializer>();
 
+            //
+            services.AddTransient<Services.IEmailSender, EmailSender>();
+            services.AddTransient<IViewRenderService, ViewRenderService>();
+            services.AddMvc(options =>
+                {
+                    options.CacheProfiles.Add("Default",
+                        new CacheProfile()
+                        {
+                            Duration = 60
+                        });
+                    options.CacheProfiles.Add("Never",
+                        new CacheProfile()
+                        {
+                            Location = ResponseCacheLocation.None,
+                            NoStore = true
+                        });
+                }).AddViewLocalization(
+                    LanguageViewLocationExpanderFormat.Suffix,
+                    opts => { opts.ResourcesPath = "Resources"; })
+                .AddDataAnnotationsLocalization()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
+            services.AddRecaptcha(new RecaptchaOptions()
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"]
+
+            });
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromHours(2);
+                options.Cookie.HttpOnly = true;
+            });
+            //
             services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
 
             services.AddAutoMapper();
@@ -108,7 +146,7 @@ namespace AtomStore
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandlerAuthorization>();
             services.AddTransient<IOrderService, OrderService>();
-
+            services.AddTransient<ICommonService, CommonService>();
 
 
             services.AddMvc().AddJsonOptions(options=>options.SerializerSettings.ContractResolver =new DefaultContractResolver());
@@ -132,7 +170,7 @@ namespace AtomStore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>

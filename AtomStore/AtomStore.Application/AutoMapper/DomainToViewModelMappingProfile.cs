@@ -7,6 +7,7 @@ using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AtomStore.Application.ViewModels.Common;
 
 namespace AtomStore.Application.AutoMapper
 {
@@ -26,6 +27,8 @@ namespace AtomStore.Application.AutoMapper
             CreateMap<Size, SizeViewModel>().MaxDepth(2);
             CreateMap<ProductQuantity, ProductQuantityViewModel>().MaxDepth(2);
             CreateMap<ProductImage, ProductImageViewModel>().MaxDepth(2);
+			//CreateMap<WholePrice, WholePriceViewModel>().MaxDepth(2);
+			CreateMap<SystemConfig, SystemConfigViewModel>().MaxDepth(2);
         }
     }
 }

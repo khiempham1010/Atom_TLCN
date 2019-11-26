@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtomStore.Utilities.Extensions;
 
 namespace AtomStore.Models
 {
@@ -19,7 +20,7 @@ namespace AtomStore.Models
                     .Select(c => new EnumModel
                     {
                         Value = (int)c,
-                        Name = c.GetType().ToString()
+                        Name = c.GetDescription()
                     }).ToList();
             }
         }

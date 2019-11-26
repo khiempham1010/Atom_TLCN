@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtomStore.Utilities.Dtos;
 
 namespace AtomStore.Models.ProductViewModels
 {
     public class CatalogViewModel
     {
-//        public PagedResult<ProductViewModel> Data { get; set; }
+        public PagedResult<ProductViewModel> Data { get; set; }
 
         public ProductCategoryViewModel Category { set; get; }
 

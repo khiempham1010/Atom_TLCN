@@ -13,6 +13,7 @@ namespace AtomStore.Models.AccountViewModels
         public string FullName { set; get; }
 
         [Display(Name = "DOB")]
+        [DataType(DataType.Date)]
         public DateTime? BirthDay { set; get; }
 
         [Required]

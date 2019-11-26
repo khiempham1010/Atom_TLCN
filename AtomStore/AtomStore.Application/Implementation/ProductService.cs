@@ -21,50 +21,51 @@ namespace AtomStore.Application.Implementation
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private IProductQuantityRepository _productQuantityRepository;
-        private IProductImageRepository _productImageRepository;
-        ITagRepository _tagRepository;
-        IProductTagRepository _productTagRepository;
-        IUnitOfWork _unitOfWork;
-        public ProductService(
-            IProductRepository productRepository,
-            IProductQuantityRepository productQuantityRepository,
-            IProductImageRepository productImageRepository,
+        //private readonly IProductRepository _productRepository;
+        //private IProductQuantityRepository _productQuantityRepository;
+        //private IProductImageRepository _productImageRepository;
+        ////ITagRepository _tagRepository;
+        ////IProductTagRepository _productTagRepository;
+        ////IUnitOfWork _unitOfWork;
+        //public ProductService(
+        //    IProductRepository productRepository,
+        //    IProductQuantityRepository productQuantityRepository,
+        //    IProductImageRepository productImageRepository,
 
-            ITagRepository tagRepository,
-            IProductTagRepository productTagRepository,
-            IUnitOfWork unitOfWork
-            )
-        {
-            _productRepository = productRepository;
-            _productQuantityRepository = productQuantityRepository;
-            _productImageRepository = productImageRepository;
-            _tagRepository = tagRepository;
-            _productTagRepository = productTagRepository;
-            _unitOfWork = unitOfWork;
-        }
-        //private IRepository<Tag, string> _tagRepository;
-        //private IRepository<ProductTag, int> _productTagRepository;
-        //private IRepository<ProductQuantity, int> _productQuantityRepository;
-        //private IRepository<ProductImage, int> _productImageRepository;
-
-        //private IUnitOfWork _unitOfWork;
-
-        //public ProductService(IRepository<Product, int> productRepository,
-        //    IRepository<Tag, string> tagRepository,
-        //    IRepository<ProductQuantity, int> productQuantityRepository,
-        //    IRepository<ProductImage, int> productImageRepository,
-        //IUnitOfWork unitOfWork,
-        //IRepository<ProductTag, int> productTagRepository)
+        //    ITagRepository tagRepository,
+        //    IProductTagRepository productTagRepository,
+        //    IUnitOfWork unitOfWork
+        //    )
         //{
         //    _productRepository = productRepository;
-        //    _tagRepository = tagRepository;
         //    _productQuantityRepository = productQuantityRepository;
-        //    _productTagRepository = productTagRepository;
         //    _productImageRepository = productImageRepository;
+        //    _tagRepository = tagRepository;
+        //    _productTagRepository = productTagRepository;
         //    _unitOfWork = unitOfWork;
         //}
+        private IRepository<Tag, string> _tagRepository;
+        private IRepository<ProductTag, int> _productTagRepository;
+        private IRepository<ProductQuantity, int> _productQuantityRepository;
+        private IRepository<ProductImage, int> _productImageRepository;
+        private IRepository<Product, int> _productRepository;
+        private IUnitOfWork _unitOfWork;
+
+        public ProductService(IRepository<Product, int> productRepository,
+            IRepository<Tag, string> tagRepository,
+            IRepository<ProductQuantity, int> productQuantityRepository,
+            IRepository<ProductImage, int> productImageRepository,
+        IUnitOfWork unitOfWork,
+        IRepository<ProductTag, int> productTagRepository)
+        {
+
+            _productRepository = productRepository;
+            _tagRepository = tagRepository;
+            _productQuantityRepository = productQuantityRepository;
+            _productTagRepository = productTagRepository;
+            _productImageRepository = productImageRepository;
+            _unitOfWork = unitOfWork;
+        }
 
         public ProductViewModel Add(ProductViewModel productVM)
         {
@@ -290,11 +291,11 @@ namespace AtomStore.Application.Implementation
             }
         }
 
-        //public List<ProductViewModel> GetLastest(int top)
-        //{
-        //    return _productRepository.FindAll(x => x.Status == Status.Active).OrderByDescending(x => x.DateCreated)
-        //        .Take(top).ProjectTo<ProductViewModel>().ToList();
-        //}
+        public List<ProductViewModel> GetLastest(int top)
+        {
+            return _productRepository.FindAll(x => x.Status == Status.Active).OrderByDescending(x => x.DateCreated)
+                .Take(top).ProjectTo<ProductViewModel>().ToList();
+        }
 
         //public List<ProductViewModel> GetHotProduct(int top)
         //{
@@ -305,48 +306,48 @@ namespace AtomStore.Application.Implementation
         //        .ToList();
         //}
 
-        //public List<ProductViewModel> GetRelatedProducts(int id, int top)
-        //{
-        //    var product = _productRepository.FindById(id);
-        //    return _productRepository.FindAll(x => x.Status == Status.Active
-        //        && x.Id != id && x.CategoryId == product.CategoryId)
-        //    .OrderByDescending(x => x.DateCreated)
-        //    .Take(top)
-        //    .ProjectTo<ProductViewModel>()
-        //    .ToList();
-        //}
+        public List<ProductViewModel> GetRelatedProducts(int id, int top)
+        {
+            var product = _productRepository.FindById(id);
+            return _productRepository.FindAll(x => x.Status == Status.Active
+                && x.Id != id && x.CategoryId == product.CategoryId)
+            .OrderByDescending(x => x.DateCreated)
+            .Take(top)
+            .ProjectTo<ProductViewModel>()
+            .ToList();
+        }
 
-        //public List<ProductViewModel> GetUpsellProducts(int top)
-        //{
-        //    return _productRepository.FindAll(x => x.PromotionPrice != null)
-        //       .OrderByDescending(x => x.DateModified)
-        //       .Take(top)
-        //       .ProjectTo<ProductViewModel>().ToList();
-        //}
+        public List<ProductViewModel> GetUpsellProducts(int top)
+        {
+            return _productRepository.FindAll(x => x.PromotionPrice != null)
+               .OrderByDescending(x => x.DateModified)
+               .Take(top)
+               .ProjectTo<ProductViewModel>().ToList();
+        }
 
-        //public List<TagViewModel> GetProductTags(int productId)
-        //{
-        //    var tags = _tagRepository.FindAll();
-        //    var productTags = _productTagRepository.FindAll();
+        public List<TagViewModel> GetProductTags(int productId)
+        {
+            var tags = _tagRepository.FindAll();
+            var productTags = _productTagRepository.FindAll();
 
-        //    var query = from t in tags
-        //                join pt in productTags
-        //                on t.Id equals pt.TagId
-        //                where pt.ProductId == productId
-        //                select new TagViewModel()
-        //                {
-        //                    Id = t.Id,
-        //                    Name = t.Name
-        //                };
-        //    return query.ToList();
-        //}
+            var query = from t in tags
+                        join pt in productTags
+                        on t.Id equals pt.TagId
+                        where pt.ProductId == productId
+                        select new TagViewModel()
+                        {
+                            Id = t.Id,
+                            Name = t.Name
+                        };
+            return query.ToList();
+        }
 
-        //public bool CheckAvailability(int productId, int size, int color)
-        //{
-        //    var quantity = _productQuantityRepository.FindSingle(x => x.ColorId == color && x.SizeId == size && x.ProductId == productId);
-        //    if (quantity == null)
-        //        return false;
-        //    return quantity.Quantity > 0;
-        //}
+        public bool CheckAvailability(int productId, int size, int color)
+        {
+            var quantity = _productQuantityRepository.FindSingle(x => x.ColorId == color && x.SizeId == size && x.ProductId == productId);
+            if (quantity == null)
+                return false;
+            return quantity.Quantity > 0;
+        }
     }
 }

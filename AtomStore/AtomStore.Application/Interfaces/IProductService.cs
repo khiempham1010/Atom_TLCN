@@ -35,15 +35,15 @@ namespace AtomStore.Application.Interfaces
         void AddImages(int productId, string[] images);
 
         List<ProductImageViewModel> GetImages(int productId);
-        //List<ProductViewModel> GetLastest(int top);
+        List<ProductViewModel> GetLastest(int top);
 
         //List<ProductViewModel> GetHotProduct(int top);
-        //List<ProductViewModel> GetRelatedProducts(int id, int top);
+        List<ProductViewModel> GetRelatedProducts(int id, int top);
 
-        //List<ProductViewModel> GetUpsellProducts(int top);
+        List<ProductViewModel> GetUpsellProducts(int top);
 
-        //List<TagViewModel> GetProductTags(int productId);
+        List<TagViewModel> GetProductTags(int productId);
 
-        //bool CheckAvailability(int productId, int size, int color);
+        bool CheckAvailability(int productId, int size, int color);
     }
 }
