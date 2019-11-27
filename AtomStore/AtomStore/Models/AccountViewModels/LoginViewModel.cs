@@ -12,7 +12,7 @@ namespace AtomStore.Models.AccountViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Mail is required")]
+        [Required(ErrorMessage = "Email is required")]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
