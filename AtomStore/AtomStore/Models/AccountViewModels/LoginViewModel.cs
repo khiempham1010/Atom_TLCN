@@ -8,7 +8,7 @@ namespace AtomStore.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Required")]
+        //[Required(ErrorMessage = "Required")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
