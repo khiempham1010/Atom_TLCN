@@ -38,5 +38,6 @@ CKEDITOR.editorConfig = function( config ) {
     config.removeDialogTabs = 'image:advanced;link:advanced';
     //set default language
     config.defaultLanguage = 'en';
-    config.filebrowserImageUploadUrl = "/Admin/Upload/UploadImageForCKEditor";
+    config.filebrowserUploadMethod = 'form';
+    config.filebrowserImageUploadUrl = '/Admin/Upload/UploadImageForCKEditor?CKEditorFuncNum = 1";
 };
