@@ -111,7 +111,7 @@
 
                 },
                 error: function (status) {
-                    atom.notify('Có lỗi xảy ra', 'error');
+                    atom.notify('Has an error in progress', 'error');
                     atom.stopLoading();
                 }
             });
