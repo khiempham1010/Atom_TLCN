@@ -203,8 +203,13 @@
                 $('#lblTotalAmount').text(atom.formatNumber(totalAmount, 0));
                 if (render !== "")
                     $('#table-cart-content').html(render);
-                else
-                    $('#table-cart-content').html('There are no items in your cart.');
+                else {
+                    $('.table-responsive').html('There are no items in your cart.');
+                    $('#btnClearAll').hide();
+                    $('.checkout-btn').hide();
+                }
+
+
             }
         });
         return false;
