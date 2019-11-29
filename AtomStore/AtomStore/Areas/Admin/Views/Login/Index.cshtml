@@ -36,7 +36,7 @@
                 <section class="login_content">
                     <form id="frmLogin">
                         @Html.AntiForgeryToken()
-                        <h1>Login Form</h1>
+                        <h1>Login</h1>
                         <div>
                             <input type="text" class="form-control" name="userName" placeholder="Username" id="txtUserName" required="" />
                         </div>
@@ -45,10 +45,10 @@
                         </div>
                         <div>
                             <a class="btn btn-success submit" href="#" id="btnLogin">Log in</a>
-                            
+
                         </div>
 
-                        
+
                     </form>
                 </section>
             </div>
@@ -63,7 +63,9 @@
     <script src="~/lib/jquery-validation/localization/message_en.js"></script>
     <script src="~/app/Shared/atom.js"></script>
     <script src="~/app/controllers/login/index.js"></script>
-    <script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+<script>
         var login = new loginController();
         login.initialize();
     </script>

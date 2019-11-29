@@ -96,6 +96,19 @@
 	display: block;
 }*/
 
+.mobile-menu li .botay {
+    display: block;
+    overflow: hidden;
+    white-space: normal;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
 
 body {
     background: #fff;
@@ -4103,7 +4116,7 @@ nav a {
 
 .mtmegamenu > ul {
     padding: 0;
-    text-align: left;
+    text-align: center;
     width: 100%;
     /*text-align: center;*/
 }
@@ -4168,7 +4181,7 @@ nav a {
 }
 
 .mtmegamenu a .title.title_font span {
-    color: black;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -4181,16 +4194,16 @@ nav a {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;
-    color: #fff;
+    color: #000000;
 }
 
 .mtmegamenu .mt-root-item a {
-    color: black;
-    font-weight: 700
+    /*color: #000000;*/
+    font-weight: 700;
 }
 
     .mtmegamenu .mt-root-item a:hover {
-        color: #e83f33
+        color: #e83f33;
     }
 
 .mtmegamenu .mt-root-item .title .icon-has-sub {
@@ -4228,6 +4241,7 @@ nav a {
     line-height: normal;
     margin: auto;
     background-color: #fff;
+    margin-left: 35%;
 }
 
 .mtmegamenu .demo_custom_link_cms .menu-items {
@@ -4293,7 +4307,8 @@ nav a {
     }
 
     .mtmegamenu .submenu .title {
-        float: none
+        float: left;
+        padding-left: 15%;
     }
 
 .mtmegamenu .menu-item.divider {
@@ -4751,11 +4766,11 @@ html {
         }
 
             .mobile-menu li a:hover {
-                color: #fff
+                color: #000;
             }
 
             .mobile-menu li a.active {
-                color: #fff
+                color: #000;
             }
 
         .mobile-menu li li a {
