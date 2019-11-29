@@ -91,6 +91,7 @@ namespace AtomStore.Controllers
                     {
                         orderViewModel.CustomerId = Guid.Parse(User.GetSpecificClaim("UserId"));
                     }
+
                     _orderService.Create(orderViewModel);
                     try
                     {

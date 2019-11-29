@@ -83,7 +83,7 @@ namespace AtomStore.Areas.Admin.Controllers
                     file.CopyTo(fs);
                     fs.Flush();
                 }
-                await HttpContext.Response.WriteAsync("<script>window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ", '" + Path.Combine(imageFolder, filename).Replace(@"\", @"/") + "');</script>");
+                await HttpContext.Response.WriteAsync("<script>window.parent.CKEDITOR.tools.callFunction(1,'" + Path.Combine(imageFolder, filename).Replace(@"\", @"/") + "');</script>");
             }
         }
     }
