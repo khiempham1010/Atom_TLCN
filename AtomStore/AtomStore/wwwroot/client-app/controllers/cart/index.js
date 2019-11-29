@@ -208,8 +208,6 @@
                     $('#btnClearAll').hide();
                     $('.checkout-btn').hide();
                 }
-
-
             }
         });
         return false;
