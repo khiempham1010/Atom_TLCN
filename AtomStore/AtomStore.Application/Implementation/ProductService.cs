@@ -49,6 +49,7 @@ namespace AtomStore.Application.Implementation
         private IRepository<ProductQuantity, int> _productQuantityRepository;
         private IRepository<ProductImage, int> _productImageRepository;
         private IRepository<Product, int> _productRepository;
+        private IRepository<ProductCategory, int> _productCategoryRepository;
         private IUnitOfWork _unitOfWork;
 
         public ProductService(IRepository<Product, int> productRepository,
@@ -56,7 +57,8 @@ namespace AtomStore.Application.Implementation
             IRepository<ProductQuantity, int> productQuantityRepository,
             IRepository<ProductImage, int> productImageRepository,
         IUnitOfWork unitOfWork,
-        IRepository<ProductTag, int> productTagRepository)
+        IRepository<ProductTag, int> productTagRepository,
+        IRepository<ProductCategory, int> productCategoryRepository)
         {
 
             _productRepository = productRepository;
@@ -65,6 +67,7 @@ namespace AtomStore.Application.Implementation
             _productTagRepository = productTagRepository;
             _productImageRepository = productImageRepository;
             _unitOfWork = unitOfWork;
+            _productCategoryRepository = productCategoryRepository;
         }
 
         public ProductViewModel Add(ProductViewModel productVM)
@@ -139,7 +142,17 @@ namespace AtomStore.Application.Implementation
             if (!string.IsNullOrEmpty(keyword))
                 query = query.Where(x => x.Name.Contains(keyword));
             if (categoryId.HasValue)
-                query = query.Where(x => x.CategoryId == categoryId.Value);
+            {
+
+                var childCategory = _productCategoryRepository.FindAll(x => x.ParentId == categoryId.Value);
+
+                if (childCategory != null)
+                    query = query.Where(x => x.CategoryId == categoryId.Value || x.CategoryId == childCategory.FirstOrDefault().Id);
+                else
+                {
+                    query = query.Where(x => x.CategoryId == categoryId.Value);
+                }
+            }
 
             int totalRow = query.Count();
 
