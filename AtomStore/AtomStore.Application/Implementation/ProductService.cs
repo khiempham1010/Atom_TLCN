@@ -144,10 +144,25 @@ namespace AtomStore.Application.Implementation
             if (categoryId.HasValue)
             {
 
-                var childCategory = _productCategoryRepository.FindAll(x => x.ParentId == categoryId.Value);
-
+                var childCategory = _productCategoryRepository.FindAll(x => x.ParentId == categoryId.Value || x.Id == categoryId.Value);
+                //var newCategoryList = childCategory;
+                foreach (var item in childCategory)
+                {
+                    if (item.Id != categoryId.Value)
+                    {
+                        var childCategory2 = _productCategoryRepository.FindAll(x => x.ParentId == item.Id);
+                        childCategory = childCategory.Concat(childCategory2);
+                    }
+                }
+                var productCategory = _productCategoryRepository.FindAll();
                 if (childCategory != null)
-                    query = query.Where(x => x.CategoryId == categoryId.Value || x.CategoryId == childCategory.FirstOrDefault().Id);
+                {
+                    productCategory = productCategory.Except(childCategory);
+                    foreach (var item in productCategory)
+                    {
+                        query = query.Except(_productRepository.FindAll(x => x.CategoryId == item.Id));
+                    }
+                }
                 else
                 {
                     query = query.Where(x => x.CategoryId == categoryId.Value);

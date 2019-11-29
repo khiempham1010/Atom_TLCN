@@ -7,7 +7,7 @@
                 <div class="mt-root-item">
                     <a href="#">
 
-                        <div class="title title_font"><span class="title-text">@item.Name</span></div>
+                        <div class="title title_font"><span class="title-text"onclick="window.location.href='/@item.SeoAlias-c.@(item.Id).html'">@item.Name</span></div>
                         <ul class="menu-items depth-1 menucol-1-3">
                             @*<ul class="menu-item depth-1 menucol-1-3 ">*@
                             @foreach (var subItem in Model.Where(x => x.ParentId == item.Id))
@@ -18,7 +18,7 @@
                                         @foreach (var subItem1 in Model.Where(x => x.ParentId == subItem.Id))
                                         {
                                             <li class="menu-item">
-                                                <div class="title">@subItem1.Name</div>
+                                                <div class="title"onclick="window.location.href='/@subItem1.SeoAlias-c.@(subItem1.Id).html'">@subItem1.Name</div>
                                             </li>
                                         }
                                     </ul>
