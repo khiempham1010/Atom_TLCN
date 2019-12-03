@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AtomStore.Utilities.Extensions;
+using AtomStore.Application.ViewModels.System;
 
 namespace AtomStore.Models
 {
     public class CheckoutViewModel: OrderViewModel
     {
         public List<ShoppingCartViewModel> Carts { get; set; }
+        public AppUserViewModel AppUserViewModel { get; set; }
         public List<EnumModel> PaymentMethods
         {
             get

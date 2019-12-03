@@ -29,7 +29,7 @@ using AtomStore.Authorization;
 using AtomStore.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
-using IEmailSender = Microsoft.AspNetCore.Identity.UI.Services.IEmailSender;
+
 
 namespace AtomStore
 {
@@ -82,7 +82,7 @@ namespace AtomStore
             services.AddTransient<DbInitializer>();
 
             //
-            services.AddTransient<Services.IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IViewRenderService, ViewRenderService>();
             services.AddMvc(options =>
                 {

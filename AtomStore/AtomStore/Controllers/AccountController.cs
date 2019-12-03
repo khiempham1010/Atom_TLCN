@@ -7,10 +7,10 @@ using AtomStore.Data.Entities;
 using AtomStore.Data.Enums;
 using AtomStore.Extensions;
 using AtomStore.Models.AccountViewModels;
+using AtomStore.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

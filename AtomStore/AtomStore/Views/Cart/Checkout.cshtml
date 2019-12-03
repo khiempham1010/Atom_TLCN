@@ -80,12 +80,26 @@
                                     <li class="row">
                                         <div class="col-sm-6">
                                             <label for="first_name" class="required">Full Name</label>
-                                            <input class="input form-control" type="text" asp-for="CustomerName">
+                                            @if (Model.AppUserViewModel != null)
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerName" value=@Model.AppUserViewModel.FullName>
+                                            }
+                                            else
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerName">
+                                            }
                                         </div>
                                         <!--/ [col] -->
                                         <div class="col-sm-6">
                                             <label for="last_name" class="required">Phone</label>
-                                            <input class="input form-control" type="text" asp-for="CustomerPhone">
+                                            @if (Model.AppUserViewModel != null)
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerPhone" value=@Model.AppUserViewModel.PhoneNumber>
+                                            }
+                                            else
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerPhone">
+                                            }
                                         </div>
                                         <!--/ [col] -->
                                     </li>
@@ -93,7 +107,14 @@
                                     <li class="row">
                                         <div class="col-xs-12">
                                             <label for="address" class="required">Address</label>
-                                            <input class="input form-control" type="text" asp-for="CustomerAddress">
+                                            @if (Model.AppUserViewModel != null)
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerAddress">
+                                            }
+                                            else
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerAddress">
+                                            }
                                         </div>
                                         <!--/ [col] -->
 
@@ -121,7 +142,7 @@
                                         </li>
                                     }
                                 </ul>
-                                <button class="button"><i class="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
+                                
                             </div>
                             <h4 class="checkout-sep last">4. Order Review</h4>
                             <div class="box-border">

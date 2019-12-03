@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AtomStore.Application.Interfaces;
 using AtomStore.Application.ViewModels.Product;
+using AtomStore.Application.ViewModels.System;
 using AtomStore.Data.Enums;
 using AtomStore.Extensions;
 using AtomStore.Models;
@@ -22,15 +23,18 @@ namespace AtomStore.Controllers
         IViewRenderService _viewRenderService;
         IConfiguration _configuration;
         IEmailSender _emailSender;
+        IUserService _userService;
         public CartController(IProductService productService,
             IViewRenderService viewRenderService, IEmailSender emailSender,
-            IConfiguration configuration, IOrderService orderService)
+            IConfiguration configuration, IOrderService orderService,
+            IUserService userService)
         {
             _productService = productService;
             _orderService = orderService;
             _viewRenderService = viewRenderService;
             _configuration = configuration;
             _emailSender = emailSender;
+            _userService = userService;
         }
         [Route("cart.html", Name = "Cart")]
         public IActionResult Index()
@@ -51,6 +55,10 @@ namespace AtomStore.Controllers
             }
 
             model.Carts = session;
+            if (User.Identity.IsAuthenticated == true)
+            {
+                model.AppUserViewModel = _userService.GetById(User.GetSpecificClaim("UserId").ToString()).Result;
+            }
             return View(model);
         }
 
@@ -97,10 +105,14 @@ namespace AtomStore.Controllers
                     {
 
                         _orderService.Save();
-
-                        //var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", billViewModel);
-                        //Send mail
-                        //await _emailSender.SendEmailAsync(_configuration["MailSettings:AdminMail"], "New bill from Panda Shop", content);
+                        if (orderViewModel.CustomerId.Value.ToString()!="")
+                        {
+                            
+                            var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", orderViewModel);
+                            //Send mail
+                            await _emailSender.SendEmailAsync(_userService.GetById(orderViewModel.CustomerId.Value.ToString()).Result.Email, "New order from Atom Store", content);
+                        }
+                        HttpContext.Session.Remove(CommonConstants.CartSession);
                         ViewData["Success"] = true;
                     }
                     catch (Exception ex)
