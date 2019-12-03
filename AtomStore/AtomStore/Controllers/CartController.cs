@@ -98,9 +98,9 @@ namespace AtomStore.Controllers
 
                         _orderService.Save();
 
-                        //var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", billViewModel);
+                        var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", orderViewModel);
                         //Send mail
-                        //await _emailSender.SendEmailAsync(_configuration["MailSettings:AdminMail"], "New bill from Panda Shop", content);
+                        await _emailSender.SendEmailAsync(_configuration["MailSettings:AdminMail"], "New bill from ATOM Store", content);
                         ViewData["Success"] = true;
                     }
                     catch (Exception ex)
