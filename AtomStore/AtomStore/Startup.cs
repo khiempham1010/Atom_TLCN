@@ -26,6 +26,7 @@ using AtomStore.Helpers;
 using AtomStore.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using AtomStore.Authorization;
+using AtomStore.Extensions;
 using AtomStore.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
@@ -116,6 +117,7 @@ namespace AtomStore
             });
             //
             services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
+            services.AddImageResizer();
 
             services.AddAutoMapper();
             services.AddSingleton(Mapper.Configuration);
@@ -168,6 +170,7 @@ namespace AtomStore
             }
 
             app.UseHttpsRedirection();
+            app.UseImageResizer();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
