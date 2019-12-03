@@ -15,13 +15,13 @@ namespace AtomStore.Services
         {
             _configuration = configuration;
         }
+
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            SmtpClient client = new SmtpClient(_configuration["MailSettings:Server"])
+            SmtpClient client = new SmtpClient(_configuration["MailSettings:Server"], int.Parse(_configuration["MailSettings:Port"]))
             {
                 UseDefaultCredentials = false,
-                Port = int.Parse(_configuration["MailSettings:Port"]),
-                EnableSsl = bool.Parse(_configuration["MailSettings:EnableSsl"]),
+                EnableSsl = true,
                 Credentials = new NetworkCredential(_configuration["MailSettings:UserName"], _configuration["MailSettings:Password"])
             };
 
