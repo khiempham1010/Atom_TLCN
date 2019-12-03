@@ -30,7 +30,8 @@ using AtomStore.Extensions;
 using AtomStore.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
-
+using AtomStore.Aplication.Dapper.Interfaces;
+using AtomStore.Aplication.Dapper.Implimentation;
 
 namespace AtomStore
 {
@@ -149,6 +150,7 @@ namespace AtomStore
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandlerAuthorization>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICommonService, CommonService>();
+            services.AddTransient<IReportService, ReportService>();
 
 
             services.AddMvc().AddJsonOptions(options=>options.SerializerSettings.ContractResolver =new DefaultContractResolver());

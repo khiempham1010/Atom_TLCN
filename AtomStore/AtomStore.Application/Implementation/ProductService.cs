@@ -169,6 +169,7 @@ namespace AtomStore.Application.Implementation
                 }
             }
 
+
             int totalRow = query.Count();
 
             query = query.OrderByDescending(x => x.DateCreated)

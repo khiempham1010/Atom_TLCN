@@ -13,7 +13,7 @@ namespace AtomStore.Data.Entities
     {
         public AppUser() { }
         public AppUser(Guid id, string fullName, string userName,
-            string email, string phoneNumber, string avatar, Status status)
+            string email, string phoneNumber, string avatar, string address, Status status)
         {
             Id = id;
             FullName = fullName;
@@ -21,6 +21,7 @@ namespace AtomStore.Data.Entities
             Email = email;
             PhoneNumber = phoneNumber;
             Avatar = avatar;
+            Address = address;
             Status = status;
         }
         public string FullName { get; set; }
@@ -30,6 +31,7 @@ namespace AtomStore.Data.Entities
         public decimal Balance { get; set; }
 
         public string Avatar { get; set; }
+        public string Address { get; set; }
 
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }

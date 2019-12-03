@@ -79,11 +79,24 @@ namespace AtomStore.Controllers
                 Text = x.Name,
                 Value = x.Id.ToString()
             }).ToList();
-            model.Sizes = _orderService.GetSizes().Select(x => new SelectListItem()
-            {
-                Text = x.Name,
-                Value = x.Id.ToString()
-            }).ToList();
+            if (model.Category.Id == 1022 || model.Category.Id == 1021)
+                model.Sizes = _orderService.GetSizes(3).Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList();
+            else if (model.Category.Id == 1014 || model.Category.Id == 1023 || model.Category.Id == 1025 || model.Category.Id == 1027)
+                model.Sizes = _orderService.GetSizes(1).Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList();
+            else
+                model.Sizes = _orderService.GetSizes(2).Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                }).ToList();
 
             return View(model);
         }

@@ -109,7 +109,7 @@
                                             <label for="address" class="required">Address</label>
                                             @if (Model.AppUserViewModel != null)
                                             {
-                                                <input class="input form-control" type="text" asp-for="CustomerAddress">
+                                                <input class="input form-control" type="text" asp-for="CustomerAddress" value=@Model.AppUserViewModel.Address>
                                             }
                                             else
                                             {

@@ -28,6 +28,7 @@ namespace AtomStore.Application.Interfaces
         List<ColorViewModel> GetColors();
 
         List<SizeViewModel> GetSizes();
+        List<SizeViewModel> GetSizes(int sizeType);
 
         ColorViewModel GetColor(int id);
 

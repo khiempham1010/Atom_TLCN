@@ -103,6 +103,11 @@ namespace AtomStore.Application.Implementation
             return _sizeRepository.FindAll().ProjectTo<SizeViewModel>().ToList();
         }
 
+        public List<SizeViewModel> GetSizes(int sizeType)
+        {
+            return _sizeRepository.FindAll(x => x.SizeType.Id == sizeType).ProjectTo<SizeViewModel>().ToList();
+        }
+
         public void Save()
         {
             _unitOfWork.Commit();

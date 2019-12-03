@@ -5,14 +5,10 @@ using System.Text;
 
 namespace AtomStore.Application.ViewModels.Product
 {
-    public class SizeViewModel
+    public class SizeTypeViewModel
     {
         public int Id { get; set; }
         [StringLength(250)]
-        public string Name
-        {
-            get; set;
-        }
-        public SizeTypeViewModel sizetype{ get; set; }
+        public string Name { get; set; }
     }
 }

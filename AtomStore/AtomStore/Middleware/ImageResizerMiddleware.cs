@@ -60,6 +60,7 @@ namespace AtomStore.Middleware
             _memoryCache = memoryCache;
         }
 
+        [Obsolete]
         public async Task Invoke(HttpContext context)
         {
             var path = context.Request.Path;
@@ -107,6 +108,7 @@ namespace AtomStore.Middleware
 
         }
 
+        [Obsolete]
         private SKData GetImageData(string imagePath, ResizeParams resizeParams, DateTime lastWriteTimeUtc)
         {
             // check cache and return if cached
@@ -182,6 +184,7 @@ namespace AtomStore.Middleware
             return imageData;
         }
 
+        [Obsolete]
         private SKBitmap RotateAndFlip(SKBitmap original, SKCodecOrigin origin)
         {
             // these are the origins that represent a 90 degree turn in some fashion
@@ -264,6 +267,7 @@ namespace AtomStore.Middleware
 
         }
 
+        [Obsolete]
         private SKBitmap LoadBitmap(Stream stream, out SKCodecOrigin origin)
         {
             using (var s = new SKManagedStream(stream))
