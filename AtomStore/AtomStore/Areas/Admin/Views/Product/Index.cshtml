@@ -34,7 +34,7 @@
                     <option>--Select category--</option>
                 </select>
             </div>
-            <div class="col-md-2 col-sm-12  form-group pull-right">
+            <div class="col-md-12 col-sm-12 form-group pull-right">
                 @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Create)).Succeeded)
                 {
                     <button id="btnCreate" class="btn btn-success">Create</button>

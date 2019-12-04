@@ -2830,7 +2830,9 @@ a.list-group-item, button.list-group-item {
 }
 .pull-right {
     float: right!important;
-	margin:0;
+	/*margin:0;*/
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
 form.pull-right.mail-src-position {
     margin-top: -6px;
