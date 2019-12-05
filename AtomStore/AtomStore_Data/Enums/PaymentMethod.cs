@@ -9,8 +9,8 @@ namespace AtomStore.Data.Enums
     {
         [Description("Cash on delivery")]
         CashOnDelivery,
-        [Description("Onlin Banking")]
-        OnlinBanking,
+        [Description("Online Banking")]
+        OnlineBanking,
         [Description("Payment Gateway")]
         PaymentGateway,
         [Description("Visa")]
