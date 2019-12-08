@@ -38,14 +38,16 @@
                         @*<p class="forgot-pass"><a asp-action="ForgotPassword">Lost your password?</a></p>*@
                         <button type="submit" class="button">
                             <i class="icon-lock icons"></i>&nbsp; <span>Login</span>
-                        </button>                        
+                        </button>
                         <label class="inline" asp-for="RememberMe">
                             <input asp-for="RememberMe" />Remember me
                         </label>
+
+
                     </form>
                     <section>
                         @*<h4>Use another service to log in.</h4>*@
-                        <hr />
+
                         @{
                             var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                             if (loginProviders.Count == 0)
@@ -53,7 +55,7 @@
                                 <div>
                                     <p>
                                         @*There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                        for details on setting up this ASP.NET application to support logging in via external services.*@
+                            for details on setting up this ASP.NET application to support logging in via external services.*@
                                     </p>
                                 </div>
                             }
@@ -64,7 +66,7 @@
                                         <p>
                                             @foreach (var provider in loginProviders)
                                             {
-                                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                                                <button type="submit" class="btn btn-default social1" style="margin-top: 2%; background-color: #444444; color: white;" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
                                             }
                                         </p>
                                     </div>
@@ -72,7 +74,9 @@
                             }
                         }
                     </section>
+                    <hr />
                 </div>
+                
                 <div class="box-authentication">
                     <h4>Register</h4>
                     <p>Create your very own account</p>
