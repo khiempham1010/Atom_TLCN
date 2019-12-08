@@ -7,6 +7,7 @@ namespace AtomStore.Application.Interfaces
 {
     public interface IFeedbackService
     {
+
         void Add(FeedbackViewModel feedbackVm);
 
         void Update(FeedbackViewModel feedbackVm);

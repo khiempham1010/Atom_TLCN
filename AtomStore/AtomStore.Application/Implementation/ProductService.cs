@@ -197,7 +197,7 @@ namespace AtomStore.Application.Implementation
 
             int totalRow = query.Count();
 
-            query = query.OrderByDescending(x => x.DateCreated)
+            query = query.OrderByDescending(x => x.DateModified)
                 .Skip((page - 1) * pageSize).Take(pageSize);
 
             var data = query.ProjectTo<ProductViewModel>().ToList();

@@ -101,6 +101,7 @@
                     $('#txtMetaDescriptionM').val(data.SeoDescription);
                     $('#txtSeoPageTitleM').val(data.SeoPageTitle);
                     $('#txtSeoAliasM').val(data.SeoAlias);
+                    $('#lbldatecreated').val(data.DateCreated);
 
                     CKEDITOR.instances.txtContent.setData(data.Content);
                     $('#ckStatusM').prop('checked', data.Status == 1);
@@ -162,6 +163,7 @@
                 var seoMetaDescription = $('#txtMetaDescriptionM').val();
                 var seoPageTitle = $('#txtSeoPageTitleM').val();
                 var seoAlias = $('#txtSeoAliasM').val();
+                var dateCreated = $('#lbldatecreated').val();
 
                 var content = CKEDITOR.instances.txtContent.getData();
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
@@ -187,7 +189,9 @@
                         SeoPageTitle: seoPageTitle,
                         SeoAlias: seoAlias,
                         SeoKeywords: seoKeyword,
-                        SeoDescription: seoMetaDescription
+                        SeoDescription: seoMetaDescription,
+                        DateCreated:dateCreated
+
                     },
                     dataType: "json",
                     beforeSend: function () {

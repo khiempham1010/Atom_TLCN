@@ -23,7 +23,7 @@ namespace AtomStore.Data.Entities
             string description, string content, bool? homeFlag,
             string tags, string unit, Status status, string seoPageTitle,
             string seoAlias, string seoMetaKeyword,
-            string seoMetaDescription)
+            string seoMetaDescription,DateTime dateCreated,DateTime dateModified)
         {
             Name = name;
             CategoryId = categoryId;
@@ -41,6 +41,8 @@ namespace AtomStore.Data.Entities
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
             SeoDescription = seoMetaDescription;
+            DateCreated = dateCreated;
+            DateModified = dateModified;
             ProductTags = new List<ProductTag>();
 
         }
@@ -50,7 +52,7 @@ namespace AtomStore.Data.Entities
              string description, string content, bool? homeFlag,
              string tags, string unit, Status status, string seoPageTitle,
              string seoAlias, string seoMetaKeyword,
-             string seoMetaDescription)
+             string seoMetaDescription, DateTime dateCreated, DateTime dateModified)
         {
             Id = id;
             Name = name;
@@ -69,6 +71,8 @@ namespace AtomStore.Data.Entities
             SeoAlias = seoAlias;
             SeoKeywords = seoMetaKeyword;
             SeoDescription = seoMetaDescription;
+            DateCreated = dateCreated;
+            DateModified = dateModified;
             ProductTags = new List<ProductTag>();
 
         }

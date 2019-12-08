@@ -108,7 +108,7 @@ namespace AtomStore.Controllers
 
                         //Send mail
                         //await _emailSender.SendEmailAsync(_configuration["MailSettings:AdminMail"], "New bill from ATOM Store", content);
-                        if (orderViewModel.CustomerId.Value.ToString()!="")
+                        if (orderViewModel.CustomerId!=null)
                         {
                             
                             var content = await _viewRenderService.RenderToStringAsync("Cart/_BillMail", orderViewModel);
@@ -219,6 +219,8 @@ namespace AtomStore.Controllers
                     Price = product.PromotionPrice ?? product.Price
                 });
                 HttpContext.Session.Set(CommonConstants.CartSession, cart);
+                
+                var a=HttpContext.Session.GetString(CommonConstants.CartSession);
             }
             return new OkObjectResult(productId);
         }
