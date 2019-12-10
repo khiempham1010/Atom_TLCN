@@ -28,7 +28,7 @@ namespace AtomStore.Application.AutoMapper
             CreateMap<OrderViewModel, Order>()
               .ConstructUsing(c => new Order(c.Id, c.CustomerName, c.CustomerAddress,
               c.CustomerPhone, c.CustomerMessage, c.OrderStatus,
-              c.PaymentMethod, c.Status, c.CustomerId));
+              c.PaymentMethod, c.Status, c.CustomerId, c.CustomerEmail));
 
             CreateMap<OrderDetailViewModel, OrderDetail>()
               .ConstructUsing(c => new OrderDetail(c.Id, c.OrderId, c.ProductId,

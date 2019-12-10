@@ -103,6 +103,22 @@
                                         </div>
                                         <!--/ [col] -->
                                     </li>
+
+                                    <li class="row">
+                                        <div class="col-xs-12">
+                                            <label for="email" class="required">Email</label>
+                                            @if (Model.AppUserViewModel != null)
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerEmail" value=@Model.AppUserViewModel.Email>
+                                            }
+                                            else
+                                            {
+                                                <input class="input form-control" type="text" asp-for="CustomerEmail">
+                                            }
+                                        </div>
+                                        <!--/ [col] -->
+
+                                    </li>
                                     <!--/ .row -->
                                     <li class="row">
                                         <div class="col-xs-12">

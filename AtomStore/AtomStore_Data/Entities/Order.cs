@@ -15,7 +15,7 @@ namespace AtomStore.Data.Entities
         public Order() { }
 
         public Order(string customerName, string customerAddress, string customerMobile, string customerMessage,
-            OrderStatus orderStatus, PaymentMethod paymentMethod, Status status, Guid? customerId)
+            OrderStatus orderStatus, PaymentMethod paymentMethod, Status status, Guid? customerId, string customerEmail)
         {
             CustomerName = customerName;
             CustomerAddress = customerAddress;
@@ -25,10 +25,11 @@ namespace AtomStore.Data.Entities
             PaymentMethod = paymentMethod;
             Status = status;
             CustomerId = customerId;
+            CustomerEmail = customerEmail;
         }
 
         public Order(int id, string customerName, string customerAddress, string customerMobile, string customerMessage,
-           OrderStatus orderStatus, PaymentMethod paymentMethod, Status status, Guid? customerId)
+           OrderStatus orderStatus, PaymentMethod paymentMethod, Status status, Guid? customerId, string customerEmail)
         {
             Id = id;
             CustomerName = customerName;
@@ -39,16 +40,18 @@ namespace AtomStore.Data.Entities
             PaymentMethod = paymentMethod;
             Status = status;
             CustomerId = customerId;
+            CustomerEmail = customerEmail;
         }
         [Required]
         [StringLength(255)]
         public string CustomerName { get; set; }
-
+        [Required]
         [StringLength(255)]
         public string CustomerAddress { get; set; }
+        [Required]
         [StringLength(20)]
         public string CustomerPhone { get; set; }
-        [Required]
+        
         [MaxLength(256)]
         public string CustomerMessage { set; get; }
         [StringLength(255)]

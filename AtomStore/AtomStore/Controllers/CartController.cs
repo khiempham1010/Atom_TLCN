@@ -91,6 +91,7 @@ namespace AtomStore.Controllers
                         CustomerPhone = model.CustomerPhone,
                         OrderStatus = OrderStatus.New,
                         CustomerAddress = model.CustomerAddress,
+                        CustomerEmail = model.CustomerEmail,
                         CustomerName = model.CustomerName,
                         CustomerMessage = model.CustomerMessage,
                         OrderDetails = details
