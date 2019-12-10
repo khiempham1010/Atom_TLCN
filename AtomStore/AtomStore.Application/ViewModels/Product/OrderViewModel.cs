@@ -22,7 +22,7 @@ namespace AtomStore.Application.ViewModels.Product
         [MaxLength(50)]
         public string CustomerPhone { set; get; }
 
-        [Required]
+        //[Required]
         [MaxLength(256)]
         public string CustomerMessage { set; get; }
 
