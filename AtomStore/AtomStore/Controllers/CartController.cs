@@ -219,6 +219,8 @@ namespace AtomStore.Controllers
                     Price = product.PromotionPrice ?? product.Price
                 });
                 HttpContext.Session.Set(CommonConstants.CartSession, cart);
+                
+                var a=HttpContext.Session.GetString(CommonConstants.CartSession);
             }
             return new OkObjectResult(productId);
         }

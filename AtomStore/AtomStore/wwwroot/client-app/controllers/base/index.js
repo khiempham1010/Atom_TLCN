@@ -17,6 +17,7 @@
                     size: 0
                 },
                 success: function (response) {
+                    console.log(response)
                     atom.notify(resources["AddCartOK"], 'success');
                     loadHeaderCart();
                 }
